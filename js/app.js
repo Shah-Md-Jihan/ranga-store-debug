@@ -18,7 +18,7 @@ const showProducts = (products) => {
 
    document.getElementById("all-products").innerHTML = "";
 
-   const allProducts = products.slice(0, 10).map((pd) => pd);
+   const allProducts = products.map((pd) => pd);
    for (const product of allProducts) {
       const image = product.image;
       const div = document.createElement('div');
@@ -88,18 +88,25 @@ const setInnerText = (id, value) => {
 // update delivery charge and total Tax
 const updateTaxAndCharge = () => {
    const priceConverted = getInputValue('price');
-   if (priceConverted > 200) {
-      setInnerText('delivery-charge', 30);
-      setInnerText('total-tax', priceConverted * 0.2);
-   }
-   if (priceConverted > 400) {
-      setInnerText('delivery-charge', 50);
-      setInnerText('total-tax', priceConverted * 0.3);
-   }
    if (priceConverted > 500) {
       setInnerText('delivery-charge', 60);
       setInnerText('total-tax', priceConverted * 0.4);
    }
+
+   else if (priceConverted > 400) {
+      setInnerText('delivery-charge', 50);
+      setInnerText('total-tax', priceConverted * 0.3);
+   }
+
+   else if (priceConverted > 200) {
+      setInnerText('delivery-charge', 30);
+      setInnerText('total-tax', priceConverted * 0.2);
+   }
+   else {
+      setInnerText('delivery-charge', 20);
+   }
+
+
 };
 
 //grandTotal update function
